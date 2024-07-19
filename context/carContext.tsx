@@ -1,36 +1,68 @@
-/* // contexts/DataContext.tsx
+'use client';
 
-import { createContext, useState, useContext, ReactNode } from 'react';
+import React, { createContext, useState, useEffect, ReactNode, useContext } from 'react';
+import axios from 'axios';
 import { CarProps } from '@/types';
 
-interface DataContextProps {
-    cars: CarProps[] | null;
-    setCars: React.Dispatch<React.SetStateAction<CarProps[] | null>>;
+interface CarContextProps {
+  cars: CarProps[];
+  filteredCars: CarProps[];
+  fetchCars: () => void;
+  filterCars: (make: string, year: string, transmission: string) => void;
 }
 
-const initialDataContext: DataContextProps = {
-    cars: null,
-    setCars: () => {},
+const CarContext = createContext<CarContextProps | undefined>(undefined);
+
+export const CarProvider = ({ children }: { children: ReactNode }) => {
+  const [cars, setCars] = useState<CarProps[]>([]);
+  const [filteredCars, setFilteredCars] = useState<CarProps[]>([]);
+
+  useEffect(() => {
+    fetchCars();
+  }, []);
+
+  const fetchCars = async () => {
+    try {
+      const response = await axios.get('http://localhost:8800/api/cars');
+      setCars(response.data);
+      setFilteredCars(response.data);
+    } catch (error) {
+      console.error('Error fetching cars', error);
+    }
+  };
+
+  const filterCars = async (make: string, year: string, transmission: string) => {
+    let query = `http://localhost:8800/api/cars?`;
+
+    if (make !== '') {
+      query += `make=${make}&`;
+    }
+    if (year !== '') {
+      query += `year=${year}&`;
+    }
+    if (transmission !== '') {
+      query += `transmission=${transmission}&`;
+    }
+
+    try {
+      const response = await axios.get(query);
+      setFilteredCars(response.data);
+    } catch (error) {
+      console.error('Error filtering cars', error);
+    }
+  };
+
+  return (
+    <CarContext.Provider value={{ cars, filteredCars, fetchCars, filterCars }}>
+      {children}
+    </CarContext.Provider>
+  );
 };
 
-const DataContext = createContext<DataContextProps>(initialDataContext);
-
-interface DataProviderProps {
-    children: ReactNode;
-    initialCars: CarProps[];
-}
-
-export const DataProvider: React.FC<DataProviderProps> = ({ children, initialCars }) => {
-    const [cars, setCars] = useState<CarProps[] | null>(initialCars);
-
-    
-
-    return (
-        <DataContext.Provider value={{ cars, setCars }}>
-            {children}
-        </DataContext.Provider>
-    );
+export const useCarContext = () => {
+  const context = useContext(CarContext);
+  if (!context) {
+    throw new Error('useCarContext must be used within a CarProvider');
+  }
+  return context;
 };
-
-export const useData = () => useContext(DataContext);
- */

@@ -1,5 +1,7 @@
 import { MouseEventHandler } from "react";
 
+
+// types.ts
 export interface CarProps {
   id: number;
   city_mpg: number;
@@ -14,8 +16,14 @@ export interface CarProps {
   model: string;
   transmission: string;
   year: number;
-  car_img: string
+  car_img: string;
 }
+
+export interface FilterOption {
+  title: string;
+  value: string;
+}
+
 
 export interface FilterProps {
   manufacturer?: string;
@@ -56,12 +64,15 @@ export interface OptionProps {
 
 export interface CustomFilterProps {
   title: string;
-  options: OptionProps[];
+  options: { title: string, value: string }[];
+  setFilter: (value: string) => void;
 }
+
 
 export interface ShowMoreProps {
   pageNumber: number;
   isNext: boolean;
+  setLimit: (limit: number) => void;
 }
 
 export interface SearchManuFacturerProps {

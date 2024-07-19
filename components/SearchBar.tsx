@@ -1,95 +1,64 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
-
-import SearchManufacturer from "./SearchManuFacturer";
-
-const SearchButton = ({ otherClasses }: { otherClasses: string }) => (
-
-  
-
-  <button type='submit' className={`-ml-3 z-10 ${otherClasses}`}>
-    <Image
-      src={"/search.svg"}
-      alt={"magnifying glass"}
-      width={40}
-      height={40}
-      className='object-contain'
-    />
-  </button>
-);
+import React, { useState } from 'react';
+import CustomFilter from './CustomFilter';
+import { useCarContext } from '@/context/carContext';
 
 const SearchBar = () => {
-  const [manufacturer, setManuFacturer] = useState("");
-  const [model, setModel] = useState("");
+  const [search, setSearch] = useState<string>('');
+  const [year, setYear] = useState<string>('');
+  const [transmission, setTransmission] = useState<string>('');
+  const { filterCars } = useCarContext();
 
-  const router = useRouter();
-
-  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (manufacturer.trim() === "" && model.trim() === "") {
-      return alert("Please provide some input");
-    }
-
-    updateSearchParams(model.toLowerCase(), manufacturer.toLowerCase());
+  const handleFilter = () => {
+    filterCars(search, year, transmission);
   };
 
-  const updateSearchParams = (model: string, manufacturer: string) => {
-    // Create a new URLSearchParams object using the current URL search parameters
-    const searchParams = new URLSearchParams(window.location.search);
-
-    // Update or delete the 'model' search parameter based on the 'model' value
-    if (model) {
-      searchParams.set("model", model);
-    } else {
-      searchParams.delete("model");
-    }
-
-    // Update or delete the 'manufacturer' search parameter based on the 'manufacturer' value
-    if (manufacturer) {
-      searchParams.set("manufacturer", manufacturer);
-    } else {
-       searchParams.delete("manufacturer");
-    }
-
-    // Generate the new pathname with the updated search parameters
-    const newPathname = `${window.location.pathname}?${searchParams.toString()}`;
-
-    router.push(newPathname);
+  const handleReset = () => {
+    setSearch('');
+    setYear('');
+    setTransmission('');
+    filterCars('', '', '');
   };
 
   return (
-    <form className='searchbar' onSubmit={handleSearch}>
-      <div className='searchbar__item'>
-        <SearchManufacturer
-          manufacturer={manufacturer}
-          setManuFacturer={setManuFacturer}
-        />
-        <SearchButton otherClasses='sm:hidden' />
-      </div>
-      <div className='searchbar__item'>
-        <Image
-          src='/car.svg'
-          width={25}
-          height={25}
-          className='absolute w-[20px] h-[20px] ml-4'
-          alt='car model'
-        />
+    <div className="p-6 bg-white rounded-xl shadow-md">
+      <div className="flex flex-col md:flex-row md:items-center gap-4 mb-6">
         <input
-          type='text'
-          name='model'
-          value={model}
-          onChange={(e) => setModel(e.target.value)}
-          placeholder='Tiguan...'
-          className='searchbar__input'
+          type="text"
+          placeholder="Search by brand"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full md:w-1/3 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
         />
-        <SearchButton otherClasses='sm:hidden' />
+        <CustomFilter
+          label="Year"
+          options={["2023", "2022", "2021", "2020", "2019", "2018"]}
+          selected={year}
+          setSelected={setYear}
+        />
+        <CustomFilter
+          label="Transmission"
+          options={["Automatic", "Manual"]}
+          selected={transmission}
+          setSelected={setTransmission}
+        />
       </div>
-      <SearchButton otherClasses='max-sm:hidden' />
-    </form>
+      <div className="flex justify-between">
+        <button
+          onClick={handleFilter}
+          className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200"
+        >
+          Apply Filters
+        </button>
+        <button
+          onClick={handleReset}
+          className="px-6 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-colors duration-200"
+        >
+          Reset
+        </button>
+      </div>
+    </div>
   );
 };
 

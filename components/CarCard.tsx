@@ -1,7 +1,7 @@
 "use client";
 import { CarProps } from "@/types";
 import CustomButton from "./CustomButton";
-import { calculateCarRent, generateCarImageUrl } from "@/utils";
+import { calculateCarRent } from "@/utils";
 import Image from "next/image";
 import { useState } from "react";
 import CardDetails from "./CardDetails";
@@ -11,17 +11,21 @@ interface CarCardProps {
 }
 
 const CarCard = ({ car }: CarCardProps) => {
-  const {city_mpg, make, model, transmission, year, drive, car_img } = car;
 
   const [isOpen, setIsOpen] = useState(false)
 
-  const carRent = calculateCarRent(city_mpg, year)
+
+  
+
+
+
+  const carRent = calculateCarRent(car.city_mpg, car.year)
 
   return (
     <div className="car-card group">
       <div className="car-card__content">
         <h2 className="car-card__content-title">
-          {make} {model}
+          {car.make} {car.model}
         </h2>
       </div>
       <p className="flex mt-6 text-[32px] leading-[38px] font-extrabold">
@@ -41,19 +45,19 @@ const CarCard = ({ car }: CarCardProps) => {
           <div className="flex flex-col justify-center items-center gap-2">
             <Image src='/wheel.svg' alt="street wheel" width={20} height={20} />
             <p className="text-[14px]">
-              {drive.toUpperCase()}
+              {car.drive.toUpperCase()}
             </p>
           </div>
           <div className="flex flex-col justify-center items-center gap-2">
           <Image src='/tire.svg' alt="street wheel" width={20} height={20} />
           <p className="text-[14px]">
-              {transmission === 'a' ? 'Automatic' : 'Manuel'}
+              {car.transmission}
             </p>
           </div>
           <div className="flex flex-col justify-center items-center gap-2">
           <Image src='/gas.svg' alt="street wheel" width={20} height={20} />
           <p className="text-[14px]">
-            {city_mpg} MPG
+            {car.city_mpg} MPG
             </p>
           </div>
         </div>

@@ -1,8 +1,8 @@
 'use client';
 
 import { CarCard, SearchBar } from "@/components";
-import CarDetails from "@/components/CardDetails";
 import Hero from "@/components/Hero";
+import PickupDropoffForm from "@/components/PickupDropoffForm";
 import { useCarContext } from "@/context/carContext";
 import { CarProps } from "@/types";
 import { useState } from "react";
@@ -42,6 +42,10 @@ const Home = () => {
 
         <div className='home__filters'>
           <SearchBar />
+        </div>
+
+        <div className='home__pickup-dropoff-form'>
+          <PickupDropoffForm />
         </div>
 
         {filteredCars.length > 0 ? (

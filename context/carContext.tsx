@@ -9,6 +9,7 @@ interface CarContextProps {
   filteredCars: CarProps[];
   fetchCars: () => void;
   filterCars: (make: string, year: string, transmission: string) => void;
+  fetchCarById: (id: string) => Promise<CarProps | undefined>;
 }
 
 const CarContext = createContext<CarContextProps | undefined>(undefined);
@@ -52,8 +53,17 @@ export const CarProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const fetchCarById = async (id: string) => {
+    try {
+      const response = await axios.get(`http://localhost:8800/api/cars/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching car by id', error);
+    }
+  };
+
   return (
-    <CarContext.Provider value={{ cars, filteredCars, fetchCars, filterCars }}>
+    <CarContext.Provider value={{ cars, filteredCars, fetchCars, filterCars, fetchCarById }}>
       {children}
     </CarContext.Provider>
   );

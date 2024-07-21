@@ -27,3 +27,20 @@ export const getCars = (req, res) => {
         return res.status(200).json(data);
     });
 };
+
+export const getCarById = (req, res) => {
+    const { id } = req.params;
+    const q = `SELECT * FROM cars WHERE id = ${db.escape(id)}`;
+
+    db.query(q, (err, data) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json(err);
+        }
+        if (data.length === 0) {
+            return res.status(404).json({ message: "Car not found" });
+        }
+
+        return res.status(200).json(data[0]);
+    });
+};

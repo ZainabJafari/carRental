@@ -48,11 +48,7 @@ const CustomFilter = ({ label, options, selected, setSelected }: CustomFilterPro
                             active ? 'text-blue-600' : 'text-blue-600'
                           } absolute inset-y-0 left-0 flex items-center pl-3`}
                         >
-                          <Image
-                            src='/check.svg'
-                            alt='Selected'
-                            className='h-5 w-5'
-                          />
+                     
                         </span>
                       )}
                       {option}

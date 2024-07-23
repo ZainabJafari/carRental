@@ -5,6 +5,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useRouter } from 'next/navigation';
 import { useBookingContext } from '@/context/dateContext';
+import Link from 'next/link';
 
 const locations = ["Location 1", "Location 2", "Location 3"];
 const times = ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"];
@@ -110,9 +111,12 @@ const PickupDropoffForm = () => {
         </div>
       </div>
 
+      <Link href={'/cars'}>
       <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
         Submit
       </button>
+      </Link>
+
     </form>
   );
 };

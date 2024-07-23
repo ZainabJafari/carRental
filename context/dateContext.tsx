@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useState, ReactNode, useContext } from 'react';
+import React, { createContext, useState, ReactNode, useContext, useEffect } from 'react';
 
 interface BookingDetails {
   pickupDate: Date | null;
@@ -25,12 +25,44 @@ interface BookingContextProps extends BookingDetails {
 const BookingContext = createContext<BookingContextProps | undefined>(undefined);
 
 export const BookingProvider = ({ children }: { children: ReactNode }) => {
+  // Initial states
   const [pickupDate, setPickupDate] = useState<Date | null>(null);
   const [pickupLocation, setPickupLocation] = useState<string>('');
   const [pickupTime, setPickupTime] = useState<string>('');
   const [dropoffDate, setDropoffDate] = useState<Date | null>(null);
   const [dropoffLocation, setDropoffLocation] = useState<string>('');
   const [dropoffTime, setDropoffTime] = useState<string>('');
+
+  // Load data from localStorage when the component mounts
+  useEffect(() => {
+    const savedData = localStorage.getItem('bookingDetails');
+    if (savedData) {
+      const parsedData: BookingDetails = JSON.parse(savedData);
+      setPickupDate(parsedData.pickupDate ? new Date(parsedData.pickupDate) : null);
+      setPickupLocation(parsedData.pickupLocation);
+      setPickupTime(parsedData.pickupTime);
+      setDropoffDate(parsedData.dropoffDate ? new Date(parsedData.dropoffDate) : null);
+      setDropoffLocation(parsedData.dropoffLocation);
+      setDropoffTime(parsedData.dropoffTime);
+    }
+  }, []);
+
+  // Save data to localStorage whenever any booking detail changes
+  useEffect(() => {
+    const bookingDetails: BookingDetails = {
+      pickupDate,
+      pickupLocation,
+      pickupTime,
+      dropoffDate,
+      dropoffLocation,
+      dropoffTime,
+    };
+    localStorage.setItem('bookingDetails', JSON.stringify({
+      ...bookingDetails,
+      pickupDate: pickupDate ? pickupDate.toISOString() : null,
+      dropoffDate: dropoffDate ? dropoffDate.toISOString() : null,
+    }));
+  }, [pickupDate, pickupLocation, pickupTime, dropoffDate, dropoffLocation, dropoffTime]);
 
   const resetBooking = () => {
     setPickupDate(null);
@@ -42,7 +74,7 @@ export const BookingProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const submitBooking = async () => {
-    const bookingDetails = {
+    const bookingDetails: BookingDetails = {
       pickupDate,
       pickupLocation,
       pickupTime,

@@ -3,7 +3,7 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useBookingContext } from '@/context/dateContext';
 
 const locations = ["Location 1", "Location 2", "Location 3"];
@@ -23,12 +23,13 @@ const PickupDropoffForm = () => {
     setDropoffLocation,
     dropoffTime,
     setDropoffTime,
+    submitBooking
   } = useBookingContext();
   const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    router.push('/cars');
+    submitBooking()
   };
 
   return (

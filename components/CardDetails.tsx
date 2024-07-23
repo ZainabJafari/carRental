@@ -5,6 +5,7 @@ import React, { Fragment } from 'react';
 import { Dialog, Transition, TransitionChild, DialogPanel } from '@headlessui/react';
 import Image from 'next/image';
 import { generateCarImageUrl } from '@/utils';
+import Link from 'next/link';
 
 interface CarDetailsProps {
     isOpen: boolean;
@@ -13,7 +14,7 @@ interface CarDetailsProps {
 }
 
 const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
-  // Define keys to exclude from the details view
+
   const excludedKeys = ['id', 'car_img'];
 
   return (
@@ -84,10 +85,14 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
                         ))}
                     </div>
                   </div>
+                  <Link href={`/detail/${car.id}`}>
+                      View Full Details
+                  </Link>
                 </DialogPanel>
               </TransitionChild>
             </div>
           </div>
+
         </Dialog>
       </Transition>
     </>

@@ -1,6 +1,7 @@
 'use client';
 
 import { CarCard, SearchBar } from "@/components";
+import CarDetails from "@/components/CardDetails";
 import Hero from "@/components/Hero";
 import PickupDropoffForm from "@/components/PickupDropoffForm";
 import { useCarContext } from "@/context/carContext";
@@ -74,6 +75,7 @@ const Home = () => {
           </div>
         )}
       </div>
+      
     </main>
   );
 }

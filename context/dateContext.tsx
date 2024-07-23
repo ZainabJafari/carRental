@@ -19,7 +19,7 @@ interface BookingContextProps extends BookingDetails {
   setDropoffLocation: (location: string) => void;
   setDropoffTime: (time: string) => void;
   resetBooking: () => void;
-  submitBooking: (carId: string) => Promise<void>;
+  submitBooking: () => void;
 }
 
 const BookingContext = createContext<BookingContextProps | undefined>(undefined);
@@ -41,7 +41,7 @@ export const BookingProvider = ({ children }: { children: ReactNode }) => {
     setDropoffTime('');
   };
 
-  const submitBooking = async (carId: string) => {
+  const submitBooking = async () => {
     const bookingDetails = {
       pickupDate,
       pickupLocation,
@@ -49,7 +49,6 @@ export const BookingProvider = ({ children }: { children: ReactNode }) => {
       dropoffDate,
       dropoffLocation,
       dropoffTime,
-      carId,
     };
 
     try {

@@ -7,7 +7,7 @@ export const addBooking = (req, res) => {
             console.error(err);
             return res.status(500).json(err);
         }
-        return res.status(201).json({ message: "Booking created successfully", bookingId: data.insertId });
+        return res.status(201).json({ message: "Booking created successfully"});
     });
 };
 

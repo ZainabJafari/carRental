@@ -58,7 +58,6 @@ const page = ({ params }: { params: { id: string} }) => {
           </div>
           <div>
             <h3 className="text-lg font-semibold">Mileage</h3>
-            <p className="text-gray-700">{car.class}</p> {/* Changed from car.class to car.mileage */}
           </div>
           <div className="relative w-full h-96 bg-gray-200 rounded-lg overflow-hidden">
             <Image src={car.car_img} alt={`${car.make} ${car.model}`} layout="fill" objectFit="cover" />

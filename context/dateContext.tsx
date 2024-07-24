@@ -25,7 +25,6 @@ interface BookingContextProps extends BookingDetails {
 const BookingContext = createContext<BookingContextProps | undefined>(undefined);
 
 export const BookingProvider = ({ children }: { children: ReactNode }) => {
-  // Initial states
   const [pickupDate, setPickupDate] = useState<Date | null>(null);
   const [pickupLocation, setPickupLocation] = useState<string>('');
   const [pickupTime, setPickupTime] = useState<string>('');
@@ -33,7 +32,6 @@ export const BookingProvider = ({ children }: { children: ReactNode }) => {
   const [dropoffLocation, setDropoffLocation] = useState<string>('');
   const [dropoffTime, setDropoffTime] = useState<string>('');
 
-  // Load data from localStorage when the component mounts
   useEffect(() => {
     const savedData = localStorage.getItem('bookingDetails');
     if (savedData) {
@@ -47,7 +45,6 @@ export const BookingProvider = ({ children }: { children: ReactNode }) => {
     }
   }, []);
 
-  // Save data to localStorage whenever any booking detail changes
   useEffect(() => {
     const bookingDetails: BookingDetails = {
       pickupDate,

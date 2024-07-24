@@ -4,6 +4,7 @@ import "./globals.css";
 import { Footer, Navbar } from "@/components";
 import { CarProvider } from "@/context/carContext";
 import { BookingProvider } from "@/context/dateContext";
+import { UserProvider } from "@/context/userContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,9 +23,12 @@ export default function RootLayout({
       <body className="relative">
         <CarProvider>
         <BookingProvider>
+        <UserProvider>
+
           <Navbar />
           {children}
           <Footer />
+          </UserProvider>
         </BookingProvider>
         </CarProvider>
 

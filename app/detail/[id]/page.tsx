@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useCarContext } from '@/context/carContext';
 import { useBookingContext } from '@/context/dateContext';
+import UserForm from '@/components/userForm';
 
 const page = ({ params }: { params: { id: string} }) => {
   const { fetchCarById } = useCarContext();
@@ -94,6 +95,7 @@ const page = ({ params }: { params: { id: string} }) => {
           </div>
         </div>
       </div>
+      <UserForm />
     </div>
   );
 };

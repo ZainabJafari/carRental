@@ -22,14 +22,15 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="p-6 bg-white rounded-xl shadow-md">
+    <div className="p-6 bg-white rounded-xl shadow-md w-full">
+      <p className='font-bold pt-13'>Model</p>
       <div className="flex flex-col md:flex-row md:items-center gap-4 mb-6">
         <input
           type="text"
           placeholder="Search by brand"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full md:w-1/3 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+          className="w-full md:w-1/3 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 mt-10"
         />
         <CustomFilter
           label="Year"
@@ -44,18 +45,19 @@ const SearchBar = () => {
           setSelected={setTransmission}
         />
       </div>
-      <div className="flex justify-between">
-        <button
-          onClick={handleFilter}
-          className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200"
-        >
-          Apply Filters
-        </button>
+      <div className="flex p-1">
+        
         <button
           onClick={handleReset}
-          className="px-6 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-colors duration-200"
+          className="px-6 py-2 mx-2 bg-gray-400 text-gray-700 rounded-lg hover:bg-gray-500 transition-colors duration-200"
         >
           Reset
+        </button>
+        <button
+          onClick={handleFilter}
+          className="px-6 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-900 transition-colors duration-200"
+        >
+          Apply Filters
         </button>
       </div>
     </div>

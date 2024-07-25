@@ -28,10 +28,7 @@ const page = () => {
     <div>
       <div className='overflow-hidden'>
       <div className='mt-12 padding-x padding-y max-width' id='discover'>
-        <div className='home__text-container'>
-          <h1 className='text-4xl font-extrabold'>Car Catalogue</h1>
-          <p>Explore our cars you might like</p>
-        </div>
+ 
 
         <div className='home__filters'>
           <SearchBar />
@@ -51,7 +48,7 @@ const page = () => {
               <div className='text-center mt-4'>
                 <button
                   onClick={handleShowMore}
-                  className='px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700'
+                  className='px-4 py-2 bg-gray-700 text-white rounded-md hover:bg-gray-900'
                 >
                   Show More
                 </button>

@@ -2,13 +2,14 @@
 import React from 'react'
 import Image from 'next/image'
 import CustomButton from './CustomButton'
+import PickupDropoffForm from './PickupDropoffForm'
 
 const Hero = () => {
-  const handleScroll = () => {
-
-  }
-
   return (
+    <div>
+
+
+
     <div className='hero'>
       <div className='flex-1 pt-36 padding-x'>
         <h1 className='hero__title'>
@@ -17,11 +18,6 @@ const Hero = () => {
         <p className='hero__subtitle'>
           Streamline your car renatl expe
         </p>
-        <CustomButton 
-        title= 'Explore Cars'
-        containerStyle='bg-primary-blue text-white rounded-full mt-10'
-        handleClick={handleScroll}
-        />
       </div>
       <div className='hero__image-container'>
         <div className='hero__image'>
@@ -30,6 +26,8 @@ const Hero = () => {
         </div>
           <div className='hero__image-overlay'/>
       </div>
+    </div>
+      <PickupDropoffForm />
     </div>
   )
 }

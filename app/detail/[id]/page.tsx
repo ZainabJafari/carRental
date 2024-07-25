@@ -34,39 +34,7 @@ const page = ({ params }: { params: { id: string} }) => {
 
   return (
     <div className="car-detail-page max-w-7xl mx-auto p-6">
-      <div className="specifications bg-white rounded-lg shadow-lg p-6 mb-8">
-        <h2 className="text-2xl font-bold mb-4">Specifications</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <h3 className="text-lg font-semibold">Make</h3>
-            <p className="text-gray-700">{car.make}</p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold">Model</h3>
-            <p className="text-gray-700">{car.model}</p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold">Year</h3>
-            <p className="text-gray-700">{car.year}</p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold">Transmission</h3>
-            <p className="text-gray-700">{car.transmission}</p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold">Fuel Type</h3>
-            <p className="text-gray-700">{car.fuel_type}</p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold">Mileage</h3>
-          </div>
-          <div className="relative w-full h-96 bg-gray-200 rounded-lg overflow-hidden">
-            <Image src={car.car_img} alt={`${car.make} ${car.model}`} layout="fill" objectFit="cover" />
-          </div>
-        </div>
-      </div>
-
-      <div className="booking-details bg-white rounded-lg shadow-lg p-6">
+     <div className="booking-details bg-white rounded-lg shadow-lg p-6">
         <h2 className="text-2xl font-bold mb-4">Booking Details</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
@@ -95,6 +63,41 @@ const page = ({ params }: { params: { id: string} }) => {
           </div>
         </div>
       </div>
+      <div className="specifications bg-white rounded-lg shadow-lg p-6 ">
+        <h2 className="text-2xl font-bold mb-4">Specifications</h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <h3 className="text-lg font-semibold">Make</h3>
+            <p className="text-gray-700">{car.make}</p>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold">Model</h3>
+            <p className="text-gray-700">{car.model}</p>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold">Year</h3>
+            <p className="text-gray-700">{car.year}</p>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold">Transmission</h3>
+            <p className="text-gray-700">{car.transmission}</p>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold">Fuel Type</h3>
+            <p className="text-gray-700">{car.fuel_type}</p>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold">Displacement</h3>
+            <p className="text-gray-700">{car.displacement}</p>
+          </div>
+        </div>
+          <div className="relative w-full h-96 bg-gray-200 rounded-lg overflow-hidden">
+            <Image src={car.car_img} alt={`${car.make} ${car.model}`} layout="fill" objectFit="cover" />
+          </div>
+      </div>
+
+ 
       <UserForm />
     </div>
   );

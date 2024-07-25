@@ -14,9 +14,9 @@ const Home = () => {
   return (
     <main className='overflow-hidden'>
       <Hero />
-        <div className='home__pickup-dropoff-form'>
+  {/*       <div className='home__pickup-dropoff-form'>
           <PickupDropoffForm />
-        </div>
+        </div> */}
     </main>
   );
 }

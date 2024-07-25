@@ -34,90 +34,98 @@ const PickupDropoffForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-6 bg-white rounded-xl shadow-md">
-      <h2 className="text-xl font-semibold mb-4">Pickup Details</h2>
-      <div className="flex flex-col md:flex-row gap-4 mb-4">
+    <div className="flex justify-center px-56">
+    <form onSubmit={handleSubmit} className="w-full p-8 bg-white rounded-xl shadow-lg">
+
+      
+      <div className="flex flex-col md:flex-row gap-1 mb-6">
         <div className="w-full">
-          <label className="block mb-2">Pickup Date</label>
-          <DatePicker
-            selected={pickupDate}
-            onChange={(date) => setPickupDate(date)}
-            className="w-full p-2 border border-gray-300 rounded-md"
-          />
-        </div>
-        <div className="w-full">
-          <label className="block mb-2">Pickup Location</label>
+          <label className="block mb-2 font-medium text-gray-600">Pick-up location</label>
           <select
             value={pickupLocation}
             onChange={(e) => setPickupLocation(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-md"
+            className="w-full p-3 border border-gray-300 rounded-md"
           >
-            <option value="">Select location</option>
+            <option value="">Pick-up location</option>
             {locations.map((location) => (
               <option key={location} value={location}>{location}</option>
             ))}
           </select>
         </div>
-        <div className="w-full">
-          <label className="block mb-2">Pickup Time</label>
-          <select
-            value={pickupTime}
-            onChange={(e) => setPickupTime(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-md"
-          >
-            <option value="">Select time</option>
-            {times.map((time) => (
-              <option key={time} value={time}>{time}</option>
-            ))}
-          </select>
+        <div className="flex flex-col md:flex-row w-3/5">
+          <div className="w-full">
+            <label className="block mb-2 font-medium text-gray-600">Pickup Date</label>
+            <DatePicker
+              selected={pickupDate}
+              onChange={(date) => setPickupDate(date)}
+              className="w-full p-3 border border-gray-300 rounded-md"
+            />
+          </div>
+          <div className="w-full">
+            <label className="block mb-2 font-medium text-gray-600">Pickup Time</label>
+            <select
+              value={pickupTime}
+              onChange={(e) => setPickupTime(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded-md"
+            >
+              <option value="">Time</option>
+              {times.map((time) => (
+                <option key={time} value={time}>{time}</option>
+              ))}
+            </select>
+          </div>
         </div>
       </div>
+  
 
-      <h2 className="text-xl font-semibold mb-4">Dropoff Details</h2>
-      <div className="flex flex-col md:flex-row gap-4 mb-4">
+      <div className="flex flex-col md:flex-row mb-6 w-3/5">
         <div className="w-full">
-          <label className="block mb-2">Dropoff Date</label>
-          <DatePicker
-            selected={dropoffDate}
-            onChange={(date) => setDropoffDate(date)}
-            className="w-full p-2 border border-gray-300 rounded-md"
-          />
-        </div>
-        <div className="w-full">
-          <label className="block mb-2">Dropoff Location</label>
+          <label className="block mb-2 font-medium text-gray-600">Dropoff Location</label>
           <select
             value={dropoffLocation}
             onChange={(e) => setDropoffLocation(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-md"
+            className="w-full p-3 border border-gray-300 rounded-md"
           >
-            <option value="">Select location</option>
+            <option value="">Drop-off location</option>
             {locations.map((location) => (
               <option key={location} value={location}>{location}</option>
             ))}
           </select>
         </div>
-        <div className="w-full">
-          <label className="block mb-2">Dropoff Time</label>
-          <select
-            value={dropoffTime}
-            onChange={(e) => setDropoffTime(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-md"
-          >
-            <option value="">Select time</option>
-            {times.map((time) => (
-              <option key={time} value={time}>{time}</option>
-            ))}
-          </select>
+        <div className="flex flex-col md:flex-row gap-4 w-full">
+          <div className="w-full">
+            <label className="block mb-2 font-medium text-gray-600">Dropoff Date</label>
+            <DatePicker
+              selected={dropoffDate}
+              onChange={(date) => setDropoffDate(date)}
+              className="w-full p-3 border border-gray-300 rounded-md"
+            />
+          </div>
+          <div className="w-full">
+            <label className="block mb-2 font-medium text-gray-600">Dropoff Time</label>
+            <select
+              value={dropoffTime}
+              onChange={(e) => setDropoffTime(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded-md"
+            >
+              <option value="">Time</option>
+              {times.map((time) => (
+                <option key={time} value={time}>{time}</option>
+              ))}
+            </select>
+          </div>
         </div>
       </div>
 
-      <Link href={'/cars'}>
-            <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
-        Submit
-      </button>
-      </Link>
-
+      <div className="flex justify-center">
+        <Link href={'/cars'}>
+          <button type="submit" className="px-6 py-3 bg-gray-800 text-white rounded-md hover:bg-gray-800 transition">
+            Search
+          </button>
+        </Link>
+      </div>
     </form>
+  </div>
   );
 };
 

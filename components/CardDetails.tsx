@@ -15,7 +15,7 @@ interface CarDetailsProps {
 
 const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
 
-  const excludedKeys = ['id', 'car_img'];
+  const excludedKeys = ['id', 'car_img', 'manufacturer'];
 
   return (
     <>
@@ -86,7 +86,9 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
                     </div>
                   </div>
                   <Link href={`/detail/${car.id}`}>
+                  <button className='bg-gray-700 p-3 text-white rounded-md'>
                       View Full Details
+                  </button>
                   </Link>
                 </DialogPanel>
               </TransitionChild>

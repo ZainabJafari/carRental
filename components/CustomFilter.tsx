@@ -40,7 +40,7 @@ const CustomFilter = ({ label, options, selected, setSelected }: CustomFilterPro
                     <li
                       className={`${
                         active ? 'text-blue-900 bg-blue-100' : 'text-gray-900'
-                      } cursor-default select-none relative py-2 pl-10 pr-4`}
+                      } cursor-default select-none relative py-2 pl-10 pr-4 list-none`}
                     >
                       {selected && (
                         <span

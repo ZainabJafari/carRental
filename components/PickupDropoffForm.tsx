@@ -17,6 +17,7 @@ const PickupDropoffForm = () => {
     pickupLocation,
     setPickupLocation,
     pickupTime,
+
     setPickupTime,
     dropoffDate,
     setDropoffDate,
@@ -76,9 +77,9 @@ const PickupDropoffForm = () => {
           </div>
         </div>
       </div>
-  
 
-      <div className="flex flex-col md:flex-row mb-6 w-3/5">
+
+      <div className="flex flex-col md:flex-row gap-1 mb-6">
         <div className="w-full">
           <label className="block mb-2 font-medium text-gray-600">Dropoff Location</label>
           <select
@@ -92,7 +93,7 @@ const PickupDropoffForm = () => {
             ))}
           </select>
         </div>
-        <div className="flex flex-col md:flex-row gap-4 w-full">
+        <div className="flex flex-col md:flex-row w-3/5">
           <div className="w-full">
             <label className="block mb-2 font-medium text-gray-600">Dropoff Date</label>
             <DatePicker
@@ -116,6 +117,7 @@ const PickupDropoffForm = () => {
           </div>
         </div>
       </div>
+
 
       <div className="flex justify-center">
         <Link href={'/cars'}>
